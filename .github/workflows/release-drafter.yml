@@ -1,0 +1,25 @@
+name: Release Drafter
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'main'
+      - 'master'
+      - 'release/**'
+    tags:
+      - 'v[0-9]+'
+      - 'v[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+.[0-9]+'
+      - 'v[0-9]+_release_notes'
+      - 'v[0-9]+.[0-9]+_release_notes'
+      - 'v[0-9]+.[0-9]+.[0-9]+_release_notes'
+      - 'v[0-9]+.[0-9]+.[0-9]+.[0-9]+_release_notes'
+
+jobs:
+  update_release_draft:
+    name: Update Release Draft
+    permissions:
+      contents: write
+    uses: mavenplugins/.github/.github/workflows/release-drafter.yml@vHEAD
